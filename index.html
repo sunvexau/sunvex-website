@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SunVex — Your Decision Engine for Critical Outcomes</title>
+  <meta name="description" content="SunVex. Built to operate behind the decisions you cannot afford to get wrong.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --obsidian: #0B0B0D;
+      --graphite: #2A2A2D;
+      --stone: #E8E6E1;
+      --amber: #C9A463;
+      --white: #FFFFFF;
+      --font: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    body { font-family: var(--font); color: var(--white); background: var(--obsidian); overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ── Topbar ── */
+    .topbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 80px; display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px; transition: background 0.3s;
+    }
+    .topbar.scrolled { background: rgba(11,11,13,0.92); backdrop-filter: blur(8px); }
+    .topbar-brand { display: flex; align-items: center; gap: 12px; }
+    .topbar-brand img { height: 28px; }
+    .topbar-nav { display: flex; gap: 32px; font-size: 14px; font-weight: 400; color: rgba(255,255,255,0.75); letter-spacing: 0.02em; }
+    .topbar-nav a { transition: color 0.2s; }
+    .topbar-nav a:hover { color: var(--white); }
+    .topbar-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .topbar-hamburger span { display: block; width: 20px; height: 2px; background: var(--white); border-radius: 1px; transition: 0.3s; }
+    .topbar-mobile-nav {
+      display: none; position: fixed; top: 80px; left: 0; right: 0;
+      background: var(--obsidian); border-top: 1px solid var(--graphite);
+      flex-direction: column; padding: 24px 32px; gap: 20px; z-index: 99;
+    }
+    .topbar-mobile-nav.open { display: flex; }
+    .topbar-mobile-nav a { font-size: 16px; color: rgba(255,255,255,0.8); }
+    body.menu-open { overflow: hidden; }
+
+    /* ── Hero ── */
+    .hero {
+      min-height: 100vh; display: grid; grid-template-columns: 1.05fr 0.95fr;
+      padding-top: 80px; background: var(--obsidian);
+    }
+    .hero-copy { padding: 120px 56px 72px 72px; display: flex; flex-direction: column; justify-content: center; }
+    .hero-eyebrow {
+      font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--amber); margin-bottom: 20px; font-weight: 600;
+    }
+    .hero h1 {
+      font-size: clamp(40px, 4.5vw, 72px); font-weight: 600; line-height: 1.02;
+      margin-bottom: 24px; max-width: 680px;
+    }
+    .hero-word { transition: opacity 0.3s; }
+    .hero-accent { color: var(--amber); }
+    .hero-subhead {
+      font-size: clamp(16px, 1.125vw, 18px); line-height: 1.55;
+      color: var(--stone); max-width: 540px; margin-bottom: 40px; font-weight: 400;
+    }
+    .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn {
+      padding: 14px 28px; border-radius: 4px; font-size: 13px; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; display: inline-block;
+    }
+    .btn-primary { background: var(--amber); color: var(--obsidian); border: none; }
+    .btn-primary:hover { background: #d4af6a; }
+    .btn-secondary { background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,0.3); }
+    .btn-secondary:hover { border-color: var(--white); }
+    .btn-secondary--dark { background: transparent; color: var(--obsidian); border: 1px solid var(--obsidian); }
+    .btn-secondary--dark:hover { background: var(--obsidian); color: var(--white); }
+    .hero-art {
+      position: relative; overflow: hidden;
+      background: linear-gradient(135deg, #0f0f12 0%, #1a1a20 40%, #0B0B0D 100%);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-art-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(201,164,99,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,164,99,0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-art-shape1 {
+      position: absolute; width: 500px; height: 500px;
+      border: 1px solid rgba(201,164,99,0.12); border-radius: 50%;
+      top: 50%; left: 50%; transform: translate(-50%,-50%);
+    }
+    .hero-art-shape2 {
+      position: absolute; width: 320px; height: 320px;
+      border: 1px solid rgba(201,164,99,0.08); border-radius: 50%;
+      top: 50%; left: 50%; transform: translate(-50%,-50%);
+    }
+    .hero-art-diagonal {
+      position: absolute; inset: 0;
+      background: linear-gradient(65deg, transparent 45%, rgba(201,164,99,0.04) 48%, rgba(201,164,99,0.06) 52%, transparent 55%);
+    }
+    .hero-art-amber-line {
+      position: absolute; width: 200px; height: 1px;
+      background: var(--amber); opacity: 0.4;
+      top: 38%; left: 30%; transform: rotate(-15deg);
+      box-shadow: 0 0 20px rgba(201,164,99,0.2);
+    }
+
+    /* ── Features ── */
+    .features { padding: 120px 72px; background: var(--obsidian); }
+    .features-label { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--amber); font-weight: 600; margin-bottom: 12px; }
+    .features-headline { font-size: clamp(32px, 3vw, 48px); font-weight: 600; line-height: 1.1; margin-bottom: 48px; }
+    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .feature-card {
+      border: 1px solid var(--graphite); border-radius: 4px; padding: 32px;
+      transition: all 0.3s; cursor: default;
+    }
+    .feature-card:hover { border-color: var(--amber); transform: translateY(-2px); }
+    .feature-card img { width: 28px; height: 28px; margin-bottom: 20px; filter: brightness(0) invert(1); }
+    .feature-card h3 { font-size: 20px; font-weight: 600; margin-bottom: 12px; line-height: 1.3; }
+    .feature-card p { font-size: 15px; line-height: 1.55; color: rgba(255,255,255,0.65); }
+
+    /* ── Stats / Trust ── */
+    .stats { padding: 96px 72px; background: var(--white); color: var(--obsidian); text-align: center; }
+    .stats-headline { font-size: clamp(28px, 2.5vw, 40px); font-weight: 600; margin-bottom: 12px; }
+    .stats-subhead { font-size: 18px; color: var(--graphite); margin-bottom: 56px; }
+    .stats-grid { display: flex; justify-content: center; gap: 0; max-width: 900px; margin: 0 auto; }
+    .stat-item { flex: 1; padding: 0 32px; border-right: 1px solid rgba(42,42,45,0.15); }
+    .stat-item:last-child { border-right: none; }
+    .stat-number { font-size: 48px; font-weight: 600; color: var(--amber); line-height: 1.1; margin-bottom: 8px; }
+    .stat-label { font-size: 14px; color: var(--graphite); }
+
+    /* ── Hermes Customer Support ── */
+    .support { padding: 96px 72px; background: var(--obsidian); }
+    .support-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; max-width: 1200px; margin: 0 auto; }
+    .support-label { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--amber); font-weight: 600; margin-bottom: 12px; }
+    .support-headline { font-size: clamp(28px, 2.5vw, 40px); font-weight: 600; line-height: 1.15; margin-bottom: 20px; }
+    .support-body { font-size: 16px; line-height: 1.55; color: rgba(255,255,255,0.65); margin-bottom: 32px; max-width: 480px; }
+    .support-chat-preview {
+      background: rgba(255,255,255,0.04); border: 1px solid var(--graphite);
+      border-radius: 8px; padding: 32px;
+    }
+    .support-chat-header { font-size: 14px; font-weight: 600; margin-bottom: 16px; color: rgba(255,255,255,0.5); letter-spacing: 0.02em; }
+    .support-chat-bubble {
+      background: rgba(201,164,99,0.1); border: 1px solid rgba(201,164,99,0.2);
+      border-radius: 8px; padding: 16px 20px; margin-bottom: 16px; max-width: 85%;
+    }
+    .support-chat-bubble p { font-size: 14px; line-height: 1.5; color: var(--stone); }
+    .support-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .support-chip {
+      padding: 8px 14px; border: 1px solid var(--graphite); border-radius: 4px;
+      font-size: 12px; color: rgba(255,255,255,0.6); cursor: pointer; transition: all 0.2s;
+    }
+    .support-chip:hover { border-color: var(--amber); color: var(--amber); }
+
+    /* ── Pricing ── */
+    .pricing { padding: 96px 72px; background: var(--stone); color: var(--obsidian); }
+    .pricing-label { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--amber); font-weight: 600; margin-bottom: 12px; text-align: center; }
+    .pricing-headline { font-size: clamp(28px, 2.5vw, 40px); font-weight: 600; text-align: center; margin-bottom: 48px; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1000px; margin: 0 auto; }
+    .pricing-card {
+      background: var(--white); border-radius: 4px; padding: 40px 32px;
+      border: 1px solid rgba(42,42,45,0.1); transition: all 0.3s;
+    }
+    .pricing-card:hover { border-color: var(--amber); box-shadow: 0 4px 24px rgba(11,11,13,0.06); }
+    .pricing-card.enterprise { border-color: var(--amber); }
+    .pricing-card-name { font-size: 14px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--graphite); margin-bottom: 8px; }
+    .pricing-card-price { font-size: 36px; font-weight: 600; color: var(--obsidian); margin-bottom: 8px; }
+    .pricing-card-desc { font-size: 14px; color: var(--graphite); margin-bottom: 24px; }
+    .pricing-badge {
+      display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--amber); border: 1px solid var(--amber);
+      padding: 3px 8px; border-radius: 2px; margin-bottom: 16px;
+    }
+    .pricing-divider { height: 1px; background: rgba(42,42,45,0.1); margin: 16px 0; }
+    .pricing-card .btn { width: 100%; text-align: center; margin-top: 16px; }
+
+    /* ── Footer ── */
+    .footer { padding: 64px 72px 40px; background: var(--obsidian); }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+    .footer-brand img { height: 24px; margin-bottom: 12px; }
+    .footer-brand p { font-size: 13px; color: rgba(255,255,255,0.6); max-width: 260px; line-height: 1.5; }
+    .footer-col h4 { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.6); margin-bottom: 16px; }
+    .footer-col a { display: block; font-size: 14px; color: rgba(255,255,255,0.55); margin-bottom: 10px; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--white); }
+    .footer-bottom { border-top: 1px solid var(--graphite); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; }
+    .footer-bottom p { font-size: 12px; color: rgba(255,255,255,0.55); }
+
+    /* ── WhatsApp Float ── */
+    .whatsapp-float {
+      position: fixed; bottom: 24px; right: 24px; z-index: 200;
+    }
+    .whatsapp-btn {
+      width: 56px; height: 56px; border-radius: 50%; background: var(--amber);
+      border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(201,164,99,0.3); transition: all 0.3s;
+    }
+    .whatsapp-btn:hover { transform: scale(1.05); box-shadow: 0 6px 28px rgba(201,164,99,0.4); }
+    .whatsapp-btn svg { width: 24px; height: 24px; fill: var(--obsidian); }
+    .whatsapp-popup {
+      position: absolute; bottom: 68px; right: 0; width: 320px;
+      background: var(--white); border-radius: 8px; box-shadow: 0 8px 40px rgba(0,0,0,0.3);
+      padding: 24px; display: none; color: var(--obsidian);
+    }
+    .whatsapp-popup.open { display: block; }
+    .whatsapp-popup h4 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+    .whatsapp-popup p { font-size: 14px; color: var(--graphite); line-height: 1.5; margin-bottom: 16px; }
+    .whatsapp-popup .btn { width: 100%; text-align: center; }
+    .whatsapp-popup .footnote { font-size: 11px; color: rgba(42,42,45,0.4); margin-top: 12px; text-align: center; }
+
+    /* ── Responsive ── */
+    @media (max-width: 1024px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-copy { padding: 100px 32px 48px; }
+      .hero-art { min-height: 360px; }
+      .features-grid { grid-template-columns: 1fr 1fr; }
+      .support-grid { grid-template-columns: 1fr; gap: 40px; }
+      .pricing-grid { grid-template-columns: 1fr 1fr; }
+      .pricing-card:last-child { grid-column: 1 / -1; max-width: 400px; margin: 0 auto; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    }
+    @media (max-width: 768px) {
+      .topbar { padding: 0 20px; }
+      .topbar-nav { display: none; }
+      .topbar-hamburger { display: flex; }
+      .hero-copy { padding: 80px 20px 40px; }
+      .hero-cta { flex-direction: column; }
+      .hero-cta .btn { width: 100%; text-align: center; }
+      .features, .stats, .support, .pricing, .footer { padding: 64px 20px; }
+      .features-grid { grid-template-columns: 1fr; gap: 16px; }
+      .stats-grid { flex-direction: column; gap: 32px; }
+      .stat-item { border-right: none; border-bottom: 1px solid rgba(42,42,45,0.1); padding-bottom: 24px; }
+      .stat-item:last-child { border-bottom: none; padding-bottom: 0; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .pricing-card:last-child { grid-column: 1; max-width: none; }
+      .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+      .whatsapp-popup { width: 280px; right: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ Topbar ═══ -->
+<header class="topbar" id="topbar">
+  <div class="topbar-brand">
+    <img src="assets/logos/sunvex_lockup_horizontal_white.svg" alt="SUNVEX" height="28">
+  </div>
+  <nav class="topbar-nav" aria-label="Primary">
+    <a href="#features">Products</a>
+    <a href="#support">Solutions</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#footer">About</a>
+  </nav>
+  <button class="topbar-hamburger" id="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="mobileNav">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+<nav class="topbar-mobile-nav" id="mobileNav" aria-label="Mobile">
+  <a href="#features">Products</a>
+  <a href="#support">Solutions</a>
+  <a href="#pricing">Pricing</a>
+  <a href="#footer">About</a>
+</nav>
+
+<main>
+<!-- ═══ Hero ═══ -->
+<section class="hero" id="hero">
+  <div class="hero-copy">
+    <div class="hero-eyebrow">Platform master</div>
+    <h1>
+      Your decision engine for<br>
+      <span class="hero-accent" id="heroWord">critical</span> outcomes.
+    </h1>
+    <p class="hero-subhead">Built to operate behind the decisions you cannot afford to get wrong.</p>
+    <div class="hero-cta">
+      <a href="#features" class="btn btn-primary">Explore platform</a>
+      <a href="#pricing" class="btn btn-secondary">Contact sales</a>
+    </div>
+  </div>
+  <div class="hero-art">
+    <div class="hero-art-grid"></div>
+    <div class="hero-art-shape1"></div>
+    <div class="hero-art-shape2"></div>
+    <div class="hero-art-diagonal"></div>
+    <div class="hero-art-amber-line"></div>
+  </div>
+</section>
+
+<!-- ═══ Features ═══ -->
+<section class="features" id="features">
+  <div class="features-label">Capabilities</div>
+  <h2 class="features-headline">Built for operators.</h2>
+  <div class="features-grid">
+    <div class="feature-card">
+      <img src="assets/icons/icon_decision_engine.svg" alt="">
+      <h3>Decisions, modelled for you.</h3>
+      <p>You get a clearer operating frame before the risk compounds.</p>
+    </div>
+    <div class="feature-card">
+      <img src="assets/icons/icon_systems.svg" alt="">
+      <h3>Adapts to your context.</h3>
+      <p>Your system keeps structural discipline without turning rigid.</p>
+    </div>
+    <div class="feature-card">
+      <img src="assets/icons/icon_execution.svg" alt="">
+      <h3>You stay in control.</h3>
+      <p>Your team moves faster without surrendering the final decision.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Stats ═══ -->
+<section class="stats">
+  <h2 class="stats-headline">Precision in production.</h2>
+  <p class="stats-subhead">Running behind the decisions that matter most.</p>
+  <div class="stats-grid">
+    <div class="stat-item">
+      <div class="stat-number">99.9%</div>
+      <div class="stat-label">Uptime</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">&lt;100ms</div>
+      <div class="stat-label">Decision latency</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">SOC 2</div>
+      <div class="stat-label">Enterprise security</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Hermes Support ═══ -->
+<section class="support" id="support">
+  <div class="support-grid">
+    <div>
+      <div class="support-label">24/7 intelligence</div>
+      <h2 class="support-headline">Talk to SunVex.</h2>
+      <p class="support-body">Built on Hermes Agent — ask anything about our platform, pricing, or integration. Instant answers, no wait times.</p>
+      <a href="javascript:void(0)" class="btn btn-primary" onclick="document.querySelector('.whatsapp-btn').click();return false;">Chat on WhatsApp</a>
+    </div>
+    <div class="support-chat-preview">
+      <div class="support-chat-header">SunVex · Ask me anything</div>
+      <div class="support-chat-bubble">
+        <p>How can SunVex help? Here are some common questions:</p>
+      </div>
+      <div class="support-chips">
+        <span class="support-chip">What does SunVex do?</span>
+        <span class="support-chip">How do I get started?</span>
+        <span class="support-chip">What is Hermes Agent?</span>
+        <span class="support-chip">Integration options</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Pricing ═══ -->
+<section class="pricing" id="pricing">
+  <div class="pricing-label">Pricing</div>
+  <h2 class="pricing-headline">Choose your tier.</h2>
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <div class="pricing-card-name">Starter</div>
+      <div class="pricing-card-price">Free</div>
+      <div class="pricing-card-desc">For individuals exploring SunVex.</div>
+      <div class="pricing-divider"></div>
+      <a href="javascript:void(0)" class="btn btn-primary">Get started</a>
+    </div>
+    <div class="pricing-card">
+      <div class="pricing-card-name">Professional</div>
+      <div class="pricing-card-price">$—</div>
+      <div class="pricing-card-desc">For teams that need precision.</div>
+      <div class="pricing-badge">Coming soon</div>
+      <div class="pricing-divider"></div>
+      <a href="javascript:void(0)" class="btn btn-secondary--dark">Join waitlist</a>
+    </div>
+    <div class="pricing-card enterprise">
+      <div class="pricing-card-name">Enterprise</div>
+      <div class="pricing-card-price">Custom</div>
+      <div class="pricing-card-desc">For organisations at scale.</div>
+      <div class="pricing-badge">Coming soon</div>
+      <div class="pricing-divider"></div>
+      <a href="javascript:void(0)" class="btn btn-secondary--dark">Contact sales</a>
+    </div>
+  </div>
+</section>
+
+</main>
+<!-- ═══ Footer ═══ -->
+<footer class="footer" id="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <img src="assets/logos/sunvex_lockup_horizontal_white.svg" alt="SUNVEX" height="24">
+      <p>Your decision engine for critical outcomes.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Product</h4>
+      <a href="#features">Platform</a>
+      <a href="#pricing">Pricing</a>
+      <a href="javascript:void(0)">Integrations</a>
+      <a href="javascript:void(0)">Changelog</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="javascript:void(0)">About</a>
+      <a href="javascript:void(0)">Blog</a>
+      <a href="javascript:void(0)">Careers</a>
+      <a href="javascript:void(0)">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="javascript:void(0)">Privacy</a>
+      <a href="javascript:void(0)">Terms</a>
+      <a href="javascript:void(0)">Security</a>
+      <a href="https://wa.me/61466681786">WhatsApp</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 SunVex. All rights reserved.</p>
+    <p>Mastering complexity.</p>
+  </div>
+</footer>
+
+<!-- ═══ WhatsApp Float ═══ -->
+<div class="whatsapp-float">
+  <div class="whatsapp-popup" id="waPopup">
+    <h4>Need help?</h4>
+    <p>Talk to SunVex, powered by Hermes Agent — ask anything about our platform, pricing, or integration.</p>
+    <a href="https://wa.me/61466681786" target="_blank" rel="noopener" class="btn btn-primary">Chat on WhatsApp</a>
+    <div class="footnote">Average reply time: &lt; 1 minute</div>
+  </div>
+  <button class="whatsapp-btn" id="waBtn" aria-label="Chat with us" aria-expanded="false">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.674 1.438 5.198L2 22l4.802-1.438A9.956 9.956 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18c-1.61 0-3.116-.488-4.385-1.323l-.314-.2-2.977.893.894-2.977-.2-.314A7.957 7.957 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8zm4.272-5.808c-.232-.116-1.374-.678-1.586-.756-.212-.078-.366-.116-.52.116-.154.232-.596.756-.732.912-.136.155-.272.175-.504.058-.232-.116-.98-.362-1.867-1.152-.689-.618-1.155-1.38-1.29-1.612-.136-.232-.014-.358.102-.473.104-.104.232-.272.348-.408.116-.136.155-.232.232-.388.077-.155.039-.29-.019-.407-.058-.116-.52-1.255-.712-1.718-.188-.456-.377-.386-.52-.393-.135-.007-.29-.007-.445-.007a.86.86 0 00-.625.29c-.213.232-.814.796-.814 1.94 0 1.145.833 2.25.95 2.405.116.155 1.642 2.507 3.981 3.517 1.328.573 1.853.636 2.518.536.473-.072 1.374-.562 1.567-1.104.193-.543.193-1.008.135-1.104-.058-.097-.212-.155-.445-.271z"/>
+    </svg>
+  </button>
+</div>
+
+<script>
+  // ── Topbar scroll ──
+  const topbar = document.getElementById('topbar');
+  window.addEventListener('scroll', () => {
+    topbar.classList.toggle('scrolled', window.scrollY > 100);
+  });
+
+  // ── Hamburger ──
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobileNav');
+  hamburger.addEventListener('click', () => {
+    const isOpen = mobileNav.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', isOpen);
+    document.body.classList.toggle('menu-open', isOpen);
+  });
+  mobileNav.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      mobileNav.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('menu-open');
+    });
+  });
+
+  // ── WhatsApp popup ──
+  const waBtn = document.getElementById('waBtn');
+  const waPopup = document.getElementById('waPopup');
+  waBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = waPopup.classList.toggle('open');
+    waBtn.setAttribute('aria-expanded', isOpen);
+  });
+  document.addEventListener('click', (e) => {
+    if (!waPopup.contains(e.target) && e.target !== waBtn) {
+      waPopup.classList.remove('open');
+      waBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // ── Support chips ──
+  document.querySelectorAll('.support-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const text = chip.textContent;
+      console.log('Chat clicked: ' + text);
+      waPopup.classList.add('open');
+      waBtn.setAttribute('aria-expanded', 'true');
+    });
+  });
+
+  // ── Kinetic typography ──
+  const words = ['critical', 'complex', 'high-stakes', 'urgent'];
+  let wordIndex = 0;
+  const heroWord = document.getElementById('heroWord');
+  if (heroWord) {
+    setInterval(() => {
+      wordIndex = (wordIndex + 1) % words.length;
+      heroWord.style.opacity = '0';
+      setTimeout(() => {
+        heroWord.textContent = words[wordIndex];
+        heroWord.style.opacity = '1';
+      }, 300);
+    }, 3500);
+  }
+</script>
+</body>
+</html>

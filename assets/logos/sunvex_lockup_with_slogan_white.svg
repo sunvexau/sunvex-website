@@ -1,0 +1,20 @@
+<svg viewBox="0 0 1304.9 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SUNVEX — Mastering Complexity">
+  <g transform="translate(-10, -22)">
+    <path d="M 10 22 L 55 22 L 122.5 139 L 100 178 Z" fill="#FFFFFF"/>
+    <path d="M 118 22 L 190 22 L 154 84.4 Z" fill="#FFFFFF"/>
+  </g>
+  <text x="258" y="156"
+        font-family="Inter"
+        font-weight="600"
+        font-size="218.18"
+        letter-spacing="26.18"
+        fill="#FFFFFF">SUNVEX</text>
+  <line x1="572.45" y1="220" x2="732.45" y2="220" stroke="#C9A463" stroke-width="2.5"/>
+  <text x="652.45" y="278"
+        text-anchor="middle"
+        font-family="Inter"
+        font-weight="400"
+        font-size="54.6"
+        letter-spacing="10.92"
+        fill="#FFFFFF">MASTERING COMPLEXITY</text>
+</svg>
