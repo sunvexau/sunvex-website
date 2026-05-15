@@ -1,6 +1,8 @@
 # SunVex — sunvex.me
 
-SunVex 品牌官网，静态 HTML 页面部署在 Cloudflare Pages。
+**Positioning:** AI automation & websites for Australian small business.
+**Not:** An enterprise AI platform. No fake stats (no SOC 2, no uptime claims).
+**Audience:** Tradies, local business owners, freelancers.
 
 ## Tech Stack
 

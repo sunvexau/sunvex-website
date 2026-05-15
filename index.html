@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SunVex — Your Decision Engine for Critical Outcomes</title>
-  <meta name="description" content="SunVex. Built to operate behind the decisions you cannot afford to get wrong.">
+  <title>SunVex — AI Automation & Websites for Aussie Small Business</title>
+  <meta name="description" content="SunVex. Custom websites, smart automations, and ready-made templates for Australian trades and local businesses.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
       --obsidian: #0B0B0D;
@@ -58,9 +58,8 @@
     }
     .hero h1 {
       font-size: clamp(40px, 4.5vw, 72px); font-weight: 600; line-height: 1.02;
-      margin-bottom: 24px; max-width: 680px;
+      margin-bottom: 24px; max-width: 720px;
     }
-    .hero-word { transition: opacity 0.3s; }
     .hero-accent { color: var(--amber); }
     .hero-subhead {
       font-size: clamp(16px, 1.125vw, 18px); line-height: 1.55;
@@ -75,8 +74,6 @@
     .btn-primary:hover { background: #d4af6a; }
     .btn-secondary { background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,0.3); }
     .btn-secondary:hover { border-color: var(--white); }
-    .btn-secondary--dark { background: transparent; color: var(--obsidian); border: 1px solid var(--obsidian); }
-    .btn-secondary--dark:hover { background: var(--obsidian); color: var(--white); }
     .hero-art {
       position: relative; overflow: hidden;
       background: linear-gradient(135deg, #0f0f12 0%, #1a1a20 40%, #0B0B0D 100%);
@@ -110,78 +107,99 @@
       box-shadow: 0 0 20px rgba(201,164,99,0.2);
     }
 
-    /* ── Features ── */
-    .features { padding: 120px 72px; background: var(--obsidian); }
-    .features-label { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--amber); font-weight: 600; margin-bottom: 12px; }
-    .features-headline { font-size: clamp(32px, 3vw, 48px); font-weight: 600; line-height: 1.1; margin-bottom: 48px; }
-    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-    .feature-card {
+    /* ── Services ── */
+    .services { padding: 120px 72px; background: var(--obsidian); }
+    .services-label { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--amber); font-weight: 600; margin-bottom: 12px; }
+    .services-headline { font-size: clamp(32px, 3vw, 48px); font-weight: 600; line-height: 1.1; margin-bottom: 16px; }
+    .services-desc { font-size: 16px; line-height: 1.5; color: rgba(255,255,255,0.65); margin-bottom: 48px; max-width: 600px; }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .service-card {
       border: 1px solid var(--graphite); border-radius: 4px; padding: 32px;
-      transition: all 0.3s; cursor: default;
+      transition: all 0.3s;
     }
-    .feature-card:hover { border-color: var(--amber); transform: translateY(-2px); }
-    .feature-card img { width: 28px; height: 28px; margin-bottom: 20px; filter: brightness(0) invert(1); }
-    .feature-card h3 { font-size: 20px; font-weight: 600; margin-bottom: 12px; line-height: 1.3; }
-    .feature-card p { font-size: 15px; line-height: 1.55; color: rgba(255,255,255,0.65); }
+    .service-card:hover { border-color: var(--amber); transform: translateY(-2px); }
+    .service-icon {
+      width: 40px; height: 40px; margin-bottom: 20px; border-radius: 8px;
+      background: rgba(201,164,99,0.08); border: 1px solid rgba(201,164,99,0.15);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+    }
+    .service-card h3 { font-size: 20px; font-weight: 600; margin-bottom: 12px; line-height: 1.3; }
+    .service-card p { font-size: 15px; line-height: 1.55; color: rgba(255,255,255,0.65); margin-bottom: 16px; }
+    .service-tag {
+      display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.04em;
+      color: var(--amber); border: 1px solid rgba(201,164,99,0.25);
+      padding: 3px 10px; border-radius: 2px; margin-top: 4px;
+    }
 
-    /* ── Stats / Trust ── */
-    .stats { padding: 96px 72px; background: var(--white); color: var(--obsidian); text-align: center; }
-    .stats-headline { font-size: clamp(28px, 2.5vw, 40px); font-weight: 600; margin-bottom: 12px; }
-    .stats-subhead { font-size: 18px; color: var(--graphite); margin-bottom: 56px; }
-    .stats-grid { display: flex; justify-content: center; gap: 0; max-width: 900px; margin: 0 auto; }
-    .stat-item { flex: 1; padding: 0 32px; border-right: 1px solid rgba(42,42,45,0.15); }
-    .stat-item:last-child { border-right: none; }
-    .stat-number { font-size: 48px; font-weight: 600; color: var(--amber); line-height: 1.1; margin-bottom: 8px; }
-    .stat-label { font-size: 14px; color: var(--graphite); }
+    /* ── Product Showcase (Etsy) ── */
+    .showcase { padding: 96px 72px; background: var(--white); color: var(--obsidian); }
+    .showcase-label { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--amber); font-weight: 600; margin-bottom: 12px; }
+    .showcase-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+    .showcase-headline { font-size: clamp(28px, 2.5vw, 40px); font-weight: 600; line-height: 1.12; margin-bottom: 20px; }
+    .showcase-body { font-size: 16px; line-height: 1.55; color: rgba(42,42,45,0.75); margin-bottom: 8px; }
+    .showcase-price { font-size: 32px; font-weight: 600; color: var(--obsidian); margin: 24px 0; }
+    .showcase-features { list-style: none; margin-bottom: 32px; }
+    .showcase-features li {
+      font-size: 14px; line-height: 1.5; color: var(--graphite); padding: 6px 0;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .showcase-features li::before {
+      content: "\2713"; color: var(--amber); font-weight: 600; font-size: 14px;
+    }
+    .showcase-visual {
+      background: linear-gradient(135deg, #f5f3ef 0%, #e8e6e1 100%);
+      border-radius: 8px; padding: 48px; display: flex; flex-direction: column; gap: 16px;
+      align-items: center; justify-content: center; min-height: 360px;
+      text-align: center;
+    }
+    .showcase-visual .mockup-device {
+      background: var(--obsidian); border-radius: 6px; width: 100%; max-width: 360px;
+      aspect-ratio: 16/10; display: flex; align-items: center; justify-content: center;
+      color: var(--stone); font-size: 12px; letter-spacing: 0.03em;
+      background-image:
+        linear-gradient(rgba(201,164,99,0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,164,99,0.08) 1px, transparent 1px);
+      background-size: 24px 24px;
+      position: relative; overflow: hidden;
+    }
+    .mockup-device-bar {
+      position: absolute; top: 0; left: 0; right: 0; height: 6px;
+      background: var(--amber); opacity: 0.6;
+    }
+    .mockup-device-text {
+      text-align: center; padding: 16px; position: relative; z-index: 1;
+    }
+    .mockup-device-text .name { font-size: 11px; color: var(--amber); letter-spacing: 0.12em; text-transform: uppercase; }
+    .mockup-device-text .title { font-size: 20px; font-weight: 600; margin: 8px 0; color: var(--stone); }
+    .mockup-device-text .sub { font-size: 12px; color: rgba(232,230,225,0.6); }
 
-    /* ── Hermes Customer Support ── */
-    .support { padding: 96px 72px; background: var(--obsidian); }
-    .support-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; max-width: 1200px; margin: 0 auto; }
-    .support-label { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--amber); font-weight: 600; margin-bottom: 12px; }
-    .support-headline { font-size: clamp(28px, 2.5vw, 40px); font-weight: 600; line-height: 1.15; margin-bottom: 20px; }
-    .support-body { font-size: 16px; line-height: 1.55; color: rgba(255,255,255,0.65); margin-bottom: 32px; max-width: 480px; }
-    .support-chat-preview {
-      background: rgba(255,255,255,0.04); border: 1px solid var(--graphite);
-      border-radius: 8px; padding: 32px;
+    /* ── How it works ── */
+    .how { padding: 96px 72px; background: var(--obsidian); }
+    .how-label { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--amber); font-weight: 600; margin-bottom: 12px; }
+    .how-headline { font-size: clamp(28px, 2.5vw, 40px); font-weight: 600; line-height: 1.12; margin-bottom: 48px; }
+    .how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; max-width: 960px; }
+    .how-step { display: flex; gap: 20px; }
+    .how-number {
+      font-size: 32px; font-weight: 600; color: var(--amber); line-height: 1;
+      min-width: 40px; opacity: 0.6;
     }
-    .support-chat-header { font-size: 14px; font-weight: 600; margin-bottom: 16px; color: rgba(255,255,255,0.5); letter-spacing: 0.02em; }
-    .support-chat-bubble {
-      background: rgba(201,164,99,0.1); border: 1px solid rgba(201,164,99,0.2);
-      border-radius: 8px; padding: 16px 20px; margin-bottom: 16px; max-width: 85%;
-    }
-    .support-chat-bubble p { font-size: 14px; line-height: 1.5; color: var(--stone); }
-    .support-chips { display: flex; flex-wrap: wrap; gap: 8px; }
-    .support-chip {
-      padding: 8px 14px; border: 1px solid var(--graphite); border-radius: 4px;
-      font-size: 12px; color: rgba(255,255,255,0.6); cursor: pointer; transition: all 0.2s;
-    }
-    .support-chip:hover { border-color: var(--amber); color: var(--amber); }
+    .how-step-content h4 { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+    .how-step-content p { font-size: 15px; line-height: 1.5; color: rgba(255,255,255,0.65); }
 
-    /* ── Pricing ── */
-    .pricing { padding: 96px 72px; background: var(--stone); color: var(--obsidian); }
-    .pricing-label { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--amber); font-weight: 600; margin-bottom: 12px; text-align: center; }
-    .pricing-headline { font-size: clamp(28px, 2.5vw, 40px); font-weight: 600; text-align: center; margin-bottom: 48px; }
-    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1000px; margin: 0 auto; }
-    .pricing-card {
-      background: var(--white); border-radius: 4px; padding: 40px 32px;
-      border: 1px solid rgba(42,42,45,0.1); transition: all 0.3s;
+    /* ── CTA Contact ── */
+    .cta-contact {
+      padding: 120px 72px; background: var(--white); color: var(--obsidian);
+      text-align: center;
     }
-    .pricing-card:hover { border-color: var(--amber); box-shadow: 0 4px 24px rgba(11,11,13,0.06); }
-    .pricing-card.enterprise { border-color: var(--amber); }
-    .pricing-card-name { font-size: 14px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--graphite); margin-bottom: 8px; }
-    .pricing-card-price { font-size: 36px; font-weight: 600; color: var(--obsidian); margin-bottom: 8px; }
-    .pricing-card-desc { font-size: 14px; color: var(--graphite); margin-bottom: 24px; }
-    .pricing-badge {
-      display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: 0.08em;
-      text-transform: uppercase; color: var(--amber); border: 1px solid var(--amber);
-      padding: 3px 8px; border-radius: 2px; margin-bottom: 16px;
-    }
-    .pricing-divider { height: 1px; background: rgba(42,42,45,0.1); margin: 16px 0; }
-    .pricing-card .btn { width: 100%; text-align: center; margin-top: 16px; }
+    .cta-contact-label { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--amber); font-weight: 600; margin-bottom: 12px; }
+    .cta-contact h2 { font-size: clamp(32px, 3vw, 48px); font-weight: 600; margin-bottom: 16px; }
+    .cta-contact p { font-size: 17px; color: var(--graphite); margin-bottom: 32px; max-width: 480px; margin-left: auto; margin-right: auto; }
+    .cta-contact .btn { margin-right: 8px; margin-left: 8px; }
 
     /* ── Footer ── */
     .footer { padding: 64px 72px 40px; background: var(--obsidian); }
-    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
     .footer-brand img { height: 24px; margin-bottom: 12px; }
     .footer-brand p { font-size: 13px; color: rgba(255,255,255,0.6); max-width: 260px; line-height: 1.5; }
     .footer-col h4 { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.6); margin-bottom: 16px; }
@@ -217,10 +235,9 @@
       .hero { grid-template-columns: 1fr; min-height: auto; }
       .hero-copy { padding: 100px 32px 48px; }
       .hero-art { min-height: 360px; }
-      .features-grid { grid-template-columns: 1fr 1fr; }
-      .support-grid { grid-template-columns: 1fr; gap: 40px; }
-      .pricing-grid { grid-template-columns: 1fr 1fr; }
-      .pricing-card:last-child { grid-column: 1 / -1; max-width: 400px; margin: 0 auto; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .showcase-grid { grid-template-columns: 1fr; }
+      .how-grid { grid-template-columns: 1fr 1fr; }
       .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
     }
     @media (max-width: 768px) {
@@ -230,13 +247,12 @@
       .hero-copy { padding: 80px 20px 40px; }
       .hero-cta { flex-direction: column; }
       .hero-cta .btn { width: 100%; text-align: center; }
-      .features, .stats, .support, .pricing, .footer { padding: 64px 20px; }
-      .features-grid { grid-template-columns: 1fr; gap: 16px; }
-      .stats-grid { flex-direction: column; gap: 32px; }
-      .stat-item { border-right: none; border-bottom: 1px solid rgba(42,42,45,0.1); padding-bottom: 24px; }
-      .stat-item:last-child { border-bottom: none; padding-bottom: 0; }
-      .pricing-grid { grid-template-columns: 1fr; }
-      .pricing-card:last-child { grid-column: 1; max-width: none; }
+      .services, .showcase, .how, .cta-contact, .footer { padding: 64px 20px; }
+      .services-grid, .how-grid { grid-template-columns: 1fr; gap: 16px; }
+      .showcase-grid { gap: 32px; }
+      .showcase-visual { padding: 24px; min-height: 280px; }
+      .showcase-visual .mockup-device { max-width: 280px; }
+      .cta-contact .btn { display: block; margin: 12px auto; max-width: 280px; }
       .footer-grid { grid-template-columns: 1fr; gap: 24px; }
       .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
       .whatsapp-popup { width: 280px; right: 0; }
@@ -251,37 +267,35 @@
     <img src="assets/logos/sunvex_lockup_horizontal_white.svg" alt="SUNVEX" height="28">
   </div>
   <nav class="topbar-nav" aria-label="Primary">
-    <a href="#features">Products</a>
-    <a href="#support">Solutions</a>
-    <a href="/ai-receptionist">AI Receptionist</a>
-    <a href="#pricing">Pricing</a>
-    <a href="#footer">About</a>
+    <a href="#services">Services</a>
+    <a href="#templates">Templates</a>
+    <a href="#how">How It Works</a>
+    <a href="#contact">Contact</a>
   </nav>
   <button class="topbar-hamburger" id="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="mobileNav">
     <span></span><span></span><span></span>
   </button>
 </header>
 <nav class="topbar-mobile-nav" id="mobileNav" aria-label="Mobile">
-    <a href="#features">Products</a>
-    <a href="#support">Solutions</a>
-    <a href="/ai-receptionist">AI Receptionist</a>
-    <a href="#pricing">Pricing</a>
-    <a href="#footer">About</a>
+    <a href="#services">Services</a>
+    <a href="#templates">Templates</a>
+    <a href="#how">How It Works</a>
+    <a href="#contact">Contact</a>
   </nav>
 
 <main>
 <!-- ═══ Hero ═══ -->
 <section class="hero" id="hero">
   <div class="hero-copy">
-    <div class="hero-eyebrow">Platform master</div>
+    <div class="hero-eyebrow">SunVex</div>
     <h1>
-      Your decision engine for<br>
-      <span class="hero-accent" id="heroWord">critical</span> outcomes.
+      AI automation & websites<br>
+      for <span class="hero-accent">Australian small business.</span>
     </h1>
-    <p class="hero-subhead">Built to operate behind the decisions you cannot afford to get wrong.</p>
+    <p class="hero-subhead">Custom websites, ready-made templates, and smart automations — built for tradies and local businesses who want to show up online without the overhead.</p>
     <div class="hero-cta">
-      <a href="#features" class="btn btn-primary">Explore platform</a>
-      <a href="#pricing" class="btn btn-secondary">Contact sales</a>
+      <a href="#templates" class="btn btn-primary">Browse templates</a>
+      <a href="#contact" class="btn btn-secondary">Chat on WhatsApp</a>
     </div>
   </div>
   <div class="hero-art">
@@ -293,145 +307,136 @@
   </div>
 </section>
 
-<!-- ═══ Features ═══ -->
-<section class="features" id="features">
-  <div class="features-label">Capabilities</div>
-  <h2 class="features-headline">Built for operators.</h2>
-  <div class="features-grid">
-    <div class="feature-card">
-      <img src="assets/icons/icon_decision_engine.svg" alt="">
-      <h3>Decisions, modelled for you.</h3>
-      <p>You get a clearer operating frame before the risk compounds.</p>
+<!-- ═══ Services ═══ -->
+<section class="services" id="services">
+  <div class="services-label">What We Do</div>
+  <h2 class="services-headline">Three ways we help your business.</h2>
+  <p class="services-desc">Whether you need a site fast, a tailored build, or tools that save you hours — we've got you covered.</p>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">&#9900;</div>
+      <h3>Website Templates</h3>
+      <p>Professional, mobile-ready HTML templates built for Australian trades. Download, edit, publish — your site goes live today. No monthly fees, no platform lock-in.</p>
+      <span class="service-tag">From $29 AUD</span>
     </div>
-    <div class="feature-card">
-      <img src="assets/icons/icon_systems.svg" alt="">
-      <h3>Adapts to your context.</h3>
-      <p>Your system keeps structural discipline without turning rigid.</p>
+    <div class="service-card">
+      <div class="service-icon">&#9998;</div>
+      <h3>Custom Websites</h3>
+      <p>Need something specific? We build custom sites from the ground up or tailor existing templates to your brand. Modern design, fast load times, built for local search.</p>
+      <span class="service-tag">Get a quote</span>
     </div>
-    <div class="feature-card">
-      <img src="assets/icons/icon_execution.svg" alt="">
-      <h3>You stay in control.</h3>
-      <p>Your team moves faster without surrendering the final decision.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ Stats ═══ -->
-<section class="stats">
-  <h2 class="stats-headline">Precision in production.</h2>
-  <p class="stats-subhead">Running behind the decisions that matter most.</p>
-  <div class="stats-grid">
-    <div class="stat-item">
-      <div class="stat-number">99.9%</div>
-      <div class="stat-label">Uptime</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number">&lt;100ms</div>
-      <div class="stat-label">Decision latency</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number">SOC 2</div>
-      <div class="stat-label">Enterprise security</div>
+    <div class="service-card">
+      <div class="service-icon">&#9881;</div>
+      <h3>AI Automation</h3>
+      <p>Chatbots that answer customer enquiries, data pipelines that replace manual spreadsheets, scheduling systems, proposal builders — we automate what slows you down.</p>
+      <span class="service-tag">Built to order</span>
     </div>
   </div>
 </section>
 
-<!-- ═══ Hermes Support ═══ -->
-<section class="support" id="support">
-  <div class="support-grid">
+<!-- ═══ Product Showcase ═══ -->
+<section class="showcase" id="templates">
+  <div class="showcase-label">Featured Product</div>
+  <div class="showcase-grid">
     <div>
-      <div class="support-label">24/7 intelligence</div>
-      <h2 class="support-headline">Talk to SunVex.</h2>
-      <p class="support-body">Built on Hermes Agent — ask anything about our platform, pricing, or integration. Instant answers, no wait times.</p>
-      <a href="javascript:void(0)" class="btn btn-primary" onclick="document.querySelector('.whatsapp-btn').click();return false;">Chat on WhatsApp</a>
+      <h2 class="showcase-headline">Website Template for Trades.</h2>
+      <p class="showcase-body">One HTML file, fully responsive, ready for your content. Perfect for electricians, plumbers, builders, painters — any trade business in Australia.</p>
+      <p class="showcase-body">Includes testimonials section, service area, and a setup guide. No coding required — edit in any text editor.</p>
+      <div class="showcase-price">$29 AUD</div>
+      <ul class="showcase-features">
+        <li>Responsive — works on desktop, tablet, mobile</li>
+        <li>SEO-friendly structure</li>
+        <li>Fast loading, lightweight code</li>
+        <li>Font Awesome icons included</li>
+        <li>Setup guide with step-by-step instructions</li>
+      </ul>
+      <a href="https://etsy.com/au/shop/SunvexAu" target="_blank" rel="noopener" class="btn btn-primary">Buy on Etsy</a>
     </div>
-    <div class="support-chat-preview">
-      <div class="support-chat-header">SunVex · Ask me anything</div>
-      <div class="support-chat-bubble">
-        <p>How can SunVex help? Here are some common questions:</p>
+    <div class="showcase-visual">
+      <div class="mockup-device">
+        <div class="mockup-device-bar"></div>
+        <div class="mockup-device-text">
+          <div class="name">SUNVEX</div>
+          <div class="title">Your Trade Business</div>
+          <div class="sub">Electrician &bull; Plumber &bull; Builder</div>
+        </div>
       </div>
-      <div class="support-chips">
-        <span class="support-chip">What does SunVex do?</span>
-        <span class="support-chip">How do I get started?</span>
-        <span class="support-chip">What is Hermes Agent?</span>
-        <span class="support-chip">Integration options</span>
+      <p style="font-size:12px;color:var(--graphite);margin-top:8px;">Live preview on Etsy &rarr;</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ How It Works ═══ -->
+<section class="how" id="how">
+  <div class="how-label">How It Works</div>
+  <h2 class="how-headline">Simple, from start to live.</h2>
+  <div class="how-grid">
+    <div class="how-step">
+      <span class="how-number">01</span>
+      <div class="how-step-content">
+        <h4>Pick a template</h4>
+        <p>Browse our collection on Etsy. Each template is purpose-built for Australian trades.</p>
+      </div>
+    </div>
+    <div class="how-step">
+      <span class="how-number">02</span>
+      <div class="how-step-content">
+        <h4>Customise your content</h4>
+        <p>Open the HTML file, replace the text and images with your own business details. No special software needed.</p>
+      </div>
+    </div>
+    <div class="how-step">
+      <span class="how-number">03</span>
+      <div class="how-step-content">
+        <h4>Publish & go live</h4>
+        <p>Upload to Netlify, Cloudflare Pages, or any web host — most have free plans. Your site is live in minutes.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══ Pricing ═══ -->
-<section class="pricing" id="pricing">
-  <div class="pricing-label">Pricing</div>
-  <h2 class="pricing-headline">Choose your tier.</h2>
-  <div class="pricing-grid">
-    <div class="pricing-card">
-      <div class="pricing-card-name">Starter</div>
-      <div class="pricing-card-price">Free</div>
-      <div class="pricing-card-desc">For individuals exploring SunVex.</div>
-      <div class="pricing-divider"></div>
-      <a href="javascript:void(0)" class="btn btn-primary">Get started</a>
-    </div>
-    <div class="pricing-card">
-      <div class="pricing-card-name">Professional</div>
-      <div class="pricing-card-price">$—</div>
-      <div class="pricing-card-desc">For teams that need precision.</div>
-      <div class="pricing-badge">Coming soon</div>
-      <div class="pricing-divider"></div>
-      <a href="javascript:void(0)" class="btn btn-secondary--dark">Join waitlist</a>
-    </div>
-    <div class="pricing-card enterprise">
-      <div class="pricing-card-name">Enterprise</div>
-      <div class="pricing-card-price">Custom</div>
-      <div class="pricing-card-desc">For organisations at scale.</div>
-      <div class="pricing-badge">Coming soon</div>
-      <div class="pricing-divider"></div>
-      <a href="javascript:void(0)" class="btn btn-secondary--dark">Contact sales</a>
-    </div>
-  </div>
+<!-- ═══ CTA Contact ═══ -->
+<section class="cta-contact" id="contact">
+  <div class="cta-contact-label">Get in touch</div>
+  <h2>Have a project in mind?</h2>
+  <p>Custom website, automation setup, or just not sure where to start — send us a message on WhatsApp. We reply in minutes.</p>
+  <a href="https://wa.me/61466681786" target="_blank" rel="noopener" class="btn btn-primary">Chat on WhatsApp</a>
+  <a href="https://etsy.com/au/shop/SunvexAu" target="_blank" rel="noopener" class="btn btn-secondary" style="border-color:var(--obsidian);color:var(--obsidian);">Browse Etsy shop</a>
 </section>
 
 </main>
+
 <!-- ═══ Footer ═══ -->
 <footer class="footer" id="footer">
   <div class="footer-grid">
     <div class="footer-brand">
       <img src="assets/logos/sunvex_lockup_horizontal_white.svg" alt="SUNVEX" height="24">
-      <p>Your decision engine for critical outcomes.</p>
+      <p>AI automation & websites for Australian small business.</p>
     </div>
     <div class="footer-col">
-      <h4>Product</h4>
-      <a href="#features">Platform</a>
-      <a href="#pricing">Pricing</a>
-      <a href="javascript:void(0)">Integrations</a>
-      <a href="javascript:void(0)">Changelog</a>
+      <h4>Services</h4>
+      <a href="#templates">Templates</a>
+      <a href="#services">Custom websites</a>
+      <a href="#services">Automation</a>
+      <a href="https://etsy.com/au/shop/SunvexAu">Etsy shop</a>
     </div>
     <div class="footer-col">
-      <h4>Company</h4>
-      <a href="javascript:void(0)">About</a>
-      <a href="javascript:void(0)">Blog</a>
-      <a href="javascript:void(0)">Careers</a>
-      <a href="javascript:void(0)">Contact</a>
-    </div>
-    <div class="footer-col">
-      <h4>Legal</h4>
-      <a href="javascript:void(0)">Privacy</a>
-      <a href="javascript:void(0)">Terms</a>
-      <a href="javascript:void(0)">Security</a>
+      <h4>Contact</h4>
       <a href="https://wa.me/61466681786">WhatsApp</a>
+      <a href="mailto:sunvexcore@gmail.com">Email</a>
     </div>
   </div>
   <div class="footer-bottom">
     <p>&copy; 2026 SunVex. All rights reserved.</p>
-    <p>Mastering complexity.</p>
+    <p>Built for the tradie.</p>
   </div>
 </footer>
 
 <!-- ═══ WhatsApp Float ═══ -->
 <div class="whatsapp-float">
   <div class="whatsapp-popup" id="waPopup">
-    <h4>Need help?</h4>
-    <p>Talk to SunVex, powered by Hermes Agent — ask anything about our platform, pricing, or integration.</p>
+    <h4>Talk to us</h4>
+    <p>Questions about a template, need a custom build, or want to automate something? Send us a message.</p>
     <a href="https://wa.me/61466681786" target="_blank" rel="noopener" class="btn btn-primary">Chat on WhatsApp</a>
     <div class="footnote">Average reply time: &lt; 1 minute</div>
   </div>
@@ -479,31 +484,6 @@
       waBtn.setAttribute('aria-expanded', 'false');
     }
   });
-
-  // ── Support chips ──
-  document.querySelectorAll('.support-chip').forEach(chip => {
-    chip.addEventListener('click', () => {
-      const text = chip.textContent;
-      console.log('Chat clicked: ' + text);
-      waPopup.classList.add('open');
-      waBtn.setAttribute('aria-expanded', 'true');
-    });
-  });
-
-  // ── Kinetic typography ──
-  const words = ['critical', 'complex', 'high-stakes', 'urgent'];
-  let wordIndex = 0;
-  const heroWord = document.getElementById('heroWord');
-  if (heroWord) {
-    setInterval(() => {
-      wordIndex = (wordIndex + 1) % words.length;
-      heroWord.style.opacity = '0';
-      setTimeout(() => {
-        heroWord.textContent = words[wordIndex];
-        heroWord.style.opacity = '1';
-      }, 300);
-    }, 3500);
-  }
 </script>
 </body>
 </html>

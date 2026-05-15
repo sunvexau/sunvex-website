@@ -1,6 +1,6 @@
 # SunVex — sunvex.me
 
-> Your decision engine for critical outcomes.
+> AI automation & websites for Australian small business.
 
 Brand landing page for SunVex, hosted on Cloudflare Pages (originally GitHub Pages).
 
